@@ -6,16 +6,20 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import dev.slne.base.bukkit.BukkitMain;
+import dev.slne.base.bukkit.listener.listeners.PortalListener;
+import dev.slne.base.bukkit.listener.listeners.TabCompleteListener;
 
 public class BukkitListenerManager {
 
     /**
      * Registers all plugin {@link org.bukkit.event.Listener}s
      */
-    @SuppressWarnings("unused")
     public void registerListeners() {
         PluginManager pluginManager = Bukkit.getPluginManager();
         JavaPlugin plugin = BukkitMain.getInstance();
+
+        pluginManager.registerEvents(new PortalListener(), plugin);
+        pluginManager.registerEvents(new TabCompleteListener(), plugin);
     }
 
     /**
