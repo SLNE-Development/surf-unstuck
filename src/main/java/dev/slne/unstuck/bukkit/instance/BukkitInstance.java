@@ -4,6 +4,7 @@ import dev.slne.data.bukkit.BukkitDataSource;
 import dev.slne.unstuck.bukkit.command.BukkitCommandManager;
 import dev.slne.unstuck.bukkit.listener.BukkitListenerManager;
 import dev.slne.unstuck.core.instance.CoreInstance;
+import dev.slne.unstuck.unstuck.utils.LoggingUtils;
 
 public class BukkitInstance extends CoreInstance {
 
@@ -18,6 +19,7 @@ public class BukkitInstance extends CoreInstance {
 
         commandManager = new BukkitCommandManager();
         listenerManager = new BukkitListenerManager();
+        LoggingUtils.setuplogfolder();
 
         // dataSource = new BukkitDataSource(BukkitMain.getInstance());
         // dataSource.onLoad();

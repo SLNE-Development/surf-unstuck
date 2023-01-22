@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -25,6 +24,7 @@ import com.sk89q.worldguard.protection.regions.RegionQuery;
 
 import dev.slne.unstuck.bukkit.BukkitMain;
 import dev.slne.unstuck.unstuck.utils.LocationSerializer;
+import dev.slne.unstuck.unstuck.utils.LoggingUtils;
 import dev.slne.unstuck.unstuck.utils.MessageManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent.Builder;
@@ -150,11 +150,10 @@ public class UnstuckCommand implements CommandExecutor, TabCompleter {
 
         public void logAndNotify(Player player, boolean successful) {
 
-                Logger log = Bukkit.getLogger();
-                log.info("[Unstuck] " + player.getName() + " (" + player.getUniqueId() + ") hat Unstuck bei "
+                LoggingUtils.logToFile(player.getName() + " (" + player.getUniqueId() + ") hat Unstuck bei "
                                 + LocationSerializer.getReadableString(player.getLocation())
                                 + " verwendet! (Erfolgreich: " + successful
-                                + " )");
+                                + ")");
 
                 Builder builder = Component.text();
                 builder.append(MessageManager.getPrefix());
