@@ -2,6 +2,7 @@ package dev.slne.base.bukkit.instance;
 
 import dev.slne.base.bukkit.command.BukkitCommandManager;
 import dev.slne.base.bukkit.listener.BukkitListenerManager;
+import dev.slne.base.bukkit.utils.LoggingUtils;
 import dev.slne.base.core.instance.CoreInstance;
 import dev.slne.data.bukkit.BukkitDataSource;
 
@@ -18,6 +19,7 @@ public class BukkitInstance extends CoreInstance {
 
         commandManager = new BukkitCommandManager();
         listenerManager = new BukkitListenerManager();
+        LoggingUtils.setuplogfolder();
 
         // dataSource = new BukkitDataSource(BukkitMain.getInstance());
         // dataSource.onLoad();
