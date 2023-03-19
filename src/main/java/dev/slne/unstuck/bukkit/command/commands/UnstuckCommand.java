@@ -59,7 +59,7 @@ public class UnstuckCommand {
 
 				if (findHelper(uuid) != null) {
 					player.sendMessage(
-							Component.text("Du kannst den Befehl nicht oft eingeben!", MessageManager.ERROR));
+							Component.text("Du kannst den Befehl nicht so oft eingeben!", MessageManager.ERROR));
 					return;
 				}
 
