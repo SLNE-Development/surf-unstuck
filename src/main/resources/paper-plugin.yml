@@ -1,14 +1,15 @@
-name: SurfBase
-version: 1.0-SNAPSHOT
-description: SurfBase
+name: SurfUnstuck
+version: "1.0"
+main: dev.slne.unstuck.bukkit.BukkitMain
 api-version: "1.19"
 
-bootstrapper: dev.slne.base.bukkit.BukkitBootstapper
-loader: dev.slne.base.bukkit.BukkitLoader
-
-main: dev.slne.base.bukkit.BukkitMain
+bootstrapper: dev.slne.unstuck.bukkit.BukkitBootstapper
+loader: dev.slne.unstuck.bukkit.BukkitLoader
 
 dependencies:
+    - name: WorldGuard
+      required: true
+      bootstrap: false
     - name: ProtocolLib
       required: false
       bootstrap: false
@@ -27,3 +28,14 @@ dependencies:
     - name: Geyser-Spigot
       required: false
       bootstrap: false
+
+permissions:
+    unstuck.use:
+        default: true
+        description: Allows you to use /unstuck
+    unstuck.notify:
+        default: op
+        description: Allows you to see unstuck alerts
+    unstuck.teleport:
+        default: op
+        description: Allows you to use /unstucktp
