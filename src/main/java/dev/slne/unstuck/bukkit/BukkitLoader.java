@@ -1,4 +1,4 @@
-package dev.slne.base.bukkit;
+package dev.slne.unstuck.bukkit;
 
 import org.eclipse.aether.artifact.DefaultArtifact;
 import org.eclipse.aether.graph.Dependency;

@@ -1,4 +1,4 @@
-package dev.slne.base.bukkit.listener.listeners;
+package dev.slne.unstuck.bukkit.listener.listeners;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -19,9 +19,9 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-import dev.slne.base.bukkit.BukkitMain;
-import dev.slne.base.bukkit.utils.MessageManager;
-import dev.slne.base.bukkit.utils.NBTReader;
+import dev.slne.unstuck.bukkit.BukkitMain;
+import dev.slne.unstuck.bukkit.utils.MessageManager;
+import dev.slne.unstuck.bukkit.utils.NBTReader;
 import net.kyori.adventure.text.Component;
 
 public class PortalListener implements Listener {

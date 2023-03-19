@@ -1,4 +1,4 @@
-package dev.slne.base.bukkit.listener.listeners;
+package dev.slne.unstuck.bukkit.listener.listeners;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -1,4 +1,4 @@
-package dev.slne.base.bukkit.command.commands;
+package dev.slne.unstuck.bukkit.command.commands;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,10 +22,10 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
 
-import dev.slne.base.bukkit.BukkitMain;
-import dev.slne.base.bukkit.utils.LocationSerializer;
-import dev.slne.base.bukkit.utils.LoggingUtils;
-import dev.slne.base.bukkit.utils.MessageManager;
+import dev.slne.unstuck.bukkit.BukkitMain;
+import dev.slne.unstuck.bukkit.utils.LocationSerializer;
+import dev.slne.unstuck.bukkit.utils.LoggingUtils;
+import dev.slne.unstuck.bukkit.utils.MessageManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent.Builder;
 import net.kyori.adventure.text.event.ClickEvent;

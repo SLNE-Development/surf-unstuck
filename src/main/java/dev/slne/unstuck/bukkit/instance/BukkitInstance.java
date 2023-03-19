@@ -3,8 +3,8 @@ package dev.slne.unstuck.bukkit.instance;
 import dev.slne.data.bukkit.BukkitDataSource;
 import dev.slne.unstuck.bukkit.command.BukkitCommandManager;
 import dev.slne.unstuck.bukkit.listener.BukkitListenerManager;
+import dev.slne.unstuck.bukkit.utils.LoggingUtils;
 import dev.slne.unstuck.core.instance.CoreInstance;
-import dev.slne.unstuck.unstuck.utils.LoggingUtils;
 
 public class BukkitInstance extends CoreInstance {
 

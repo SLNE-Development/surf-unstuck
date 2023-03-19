@@ -1,4 +1,4 @@
-package dev.slne.unstuck.unstuck.utils;
+package dev.slne.unstuck.bukkit.utils;
 
 import java.io.File;
 import java.io.FileWriter;

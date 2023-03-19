@@ -1,4 +1,4 @@
-package dev.slne.base.bukkit.utils;
+package dev.slne.unstuck.bukkit.utils;
 
 import java.util.UUID;
 

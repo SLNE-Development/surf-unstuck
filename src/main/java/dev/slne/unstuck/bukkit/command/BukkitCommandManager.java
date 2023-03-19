@@ -3,8 +3,8 @@ package dev.slne.unstuck.bukkit.command;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import dev.slne.unstuck.bukkit.BukkitMain;
-import dev.slne.unstuck.unstuck.commands.UnstuckCommand;
-import dev.slne.unstuck.unstuck.commands.UnstuckTpCommand;
+import dev.slne.unstuck.bukkit.command.commands.UnstuckCommand;
+import dev.slne.unstuck.bukkit.command.commands.UnstuckTpCommand;
 
 public class BukkitCommandManager {
 

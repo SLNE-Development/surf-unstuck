@@ -1,4 +1,4 @@
-package dev.slne.base.bukkit.command.commands;
+package dev.slne.unstuck.bukkit.command.commands;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-import dev.slne.base.bukkit.utils.LocationSerializer;
-import dev.slne.base.bukkit.utils.MessageManager;
+import dev.slne.unstuck.bukkit.utils.LocationSerializer;
+import dev.slne.unstuck.bukkit.utils.MessageManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent.Builder;
 
