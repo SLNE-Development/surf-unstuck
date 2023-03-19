@@ -20,9 +20,6 @@ public class BukkitInstance extends CoreInstance {
         commandManager = new BukkitCommandManager();
         listenerManager = new BukkitListenerManager();
         LoggingUtils.setuplogfolder();
-
-        // dataSource = new BukkitDataSource(BukkitMain.getInstance());
-        // dataSource.onLoad();
     }
 
     @Override
@@ -31,8 +28,6 @@ public class BukkitInstance extends CoreInstance {
 
         commandManager.registerCommands();
         listenerManager.registerListeners();
-
-        // dataSource.onEnable();
     }
 
     @Override
@@ -40,7 +35,6 @@ public class BukkitInstance extends CoreInstance {
         super.onDisable();
 
         listenerManager.unregisterListeners();
-        // dataSource.onDisable();
     }
 
     /**

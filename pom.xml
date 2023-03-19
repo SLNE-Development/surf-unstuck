@@ -7,7 +7,7 @@
 
   <groupId>dev.slne</groupId>
   <artifactId>surf-unstuck</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>2.0-SNAPSHOT</version>
 
   <name>surf-unstuck</name>
 
@@ -41,28 +41,7 @@
       <id>codemc-snapshots</id>
       <url>https://repo.codemc.io/repository/maven-snapshots/</url>
     </repository>
-    <repository>
-      <id>snapshots1</id>
-      <name>Sonatype Snapshots</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-        <checksumPolicy>warn</checksumPolicy>
-      </snapshots>
-    </repository>
   </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>sonatype_plugin_snapshots</id>
-      <name>Sonatype Plugin Snapshots</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
 
   <distributionManagement>
     <repository>
@@ -79,10 +58,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
+        <groupId>net.kyori</groupId>
+        <artifactId>adventure-nbt</artifactId>
+        <version>4.13.0</version>
     </dependency>
     <dependency>
       <groupId>io.papermc.paper</groupId>
@@ -96,14 +74,21 @@
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>com.github.retrooper.packetevents</groupId>
-      <artifactId>spigot</artifactId>
-      <version>2.0.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
         <groupId>com.sk89q.worldguard</groupId>
         <artifactId>worldguard-bukkit</artifactId>
         <version>7.1.0-SNAPSHOT</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>dev.jorel</groupId>
+        <artifactId>commandapi-core</artifactId>
+        <version>8.8.0</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>dev.jorel</groupId>
+        <artifactId>commandapi-annotations</artifactId>
+        <version>8.8.0</version>
         <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -127,6 +112,15 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
+          <configuration>
+              <annotationProcessorPaths>
+                  <path>
+                      <groupId>dev.jorel</groupId>
+                      <artifactId>commandapi-annotations</artifactId>
+                      <version>8.8.0</version>
+                  </path>
+              </annotationProcessorPaths>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -158,51 +152,17 @@
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-            <configuration>
-              <transformers>
-                <transformer
-                  implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                  <resource>
-                    activejdbc_models.properties</resource>
-                </transformer>
-              </transformers>
-              <createDependencyReducedPom>
-                false</createDependencyReducedPom>
-              <artifactSet>
-                <includes>
-                  <include>dev.slne*</include>
-                  <include>
-                    com.github.retrooper.packetevents*</include>
-                </includes>
-              </artifactSet>
-              <relocations>
-                <relocation>
-                  <pattern>
-                    dev.slne.data</pattern>
-                  <shadedPattern>${package.name}.lib.data</shadedPattern>
-                </relocation>
-                <relocation>
-                  <pattern>
-                    com.github.retrooper</pattern>
-                  <shadedPattern>${package.name}.lib.packetevents.api</shadedPattern>
-                </relocation>
-                <relocation>
-                  <pattern>
-                    io.github.retrooper</pattern>
-                  <shadedPattern>${package.name}.lib.packetevents.impl</shadedPattern>
-                </relocation>
-              </relocations>
-            </configuration>
-          </execution>
-        </executions>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+            <annotationProcessorPaths>
+                <path>
+                    <groupId>dev.jorel</groupId>
+                    <artifactId>commandapi-annotations</artifactId>
+                    <version>8.8.0</version>
+                </path>
+            </annotationProcessorPaths>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

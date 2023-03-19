@@ -9,8 +9,8 @@ import org.bukkit.World;
 public class LocationSerializer {
 
     public static String getSerializedLocation(Location location) {
-        return location.getWorld().getUID() + ":" + location.getX() + ":" + location.getY() + ":" + location.getZ()
-                + ":" + location.getYaw() + ":" + location.getPitch();
+        return location.getWorld().getUID() + "_" + location.getX() + "_" + location.getY() + "_" + location.getZ()
+                + "_" + location.getYaw() + "_" + location.getPitch();
     }
 
     public static String getReadableString(Location location) {
@@ -19,7 +19,7 @@ public class LocationSerializer {
     }
 
     public static Location getDeserializedLocation(String string) {
-        String[] parts = string.split(":");
+        String[] parts = string.split("_");
         UUID uuid = UUID.fromString(parts[0]);
         double x = Double.parseDouble(parts[1]);
         double y = Double.parseDouble(parts[2]);

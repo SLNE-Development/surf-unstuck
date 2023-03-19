@@ -19,7 +19,7 @@ public class BukkitLoader implements PluginLoader {
                 new RemoteRepository.Builder("central", "default", "https://repo1.maven.org/maven2/").build());
 
         // Dependencies
-        mavenResolver.addDependency(new Dependency(new DefaultArtifact("dev.jorel:commandapi-core:8.8.0"), null));
+        mavenResolver.addDependency(new Dependency(new DefaultArtifact("dev.jorel:commandapi-shade:8.8.0"), null));
 
         // Resolve
         classpathBuilder.addLibrary(mavenResolver);
