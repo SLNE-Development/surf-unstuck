@@ -17,7 +17,7 @@ public class UnstuckTpCommand extends CommandAPICommand {
         withArguments(new StringArgument("serializedLocation"));
 
         executesPlayer((player, args) -> {
-            Location location = LocationSerializer.getDeserializedLocation(args[0].toString());
+            Location location = LocationSerializer.getDeserializedLocation((String) args.get("serializedLocation"));
 
             if (location == null) {
                 return;

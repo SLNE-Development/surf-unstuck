@@ -20,7 +20,7 @@ import com.sk89q.worldguard.protection.regions.RegionQuery;
 
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
-import dev.jorel.commandapi.arguments.IntegerArgument;
+import dev.jorel.commandapi.arguments.StringArgument;
 import dev.slne.unstuck.bukkit.BukkitMain;
 import dev.slne.unstuck.bukkit.utils.LocationSerializer;
 import dev.slne.unstuck.bukkit.utils.LoggingUtils;
@@ -31,32 +31,27 @@ import net.kyori.adventure.text.TextComponent.Builder;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 
-public class UnstuckCommand {
+public class UnstuckCommand extends CommandAPICommand {
 
 	private static List<UnstuckHelper> randomCodes;
 	private static CommandPermission commandPermission = CommandPermission.fromString("unstuck.use");
 
 	public UnstuckCommand() {
+		super("stuck");
+		withPermission(commandPermission);
+		withOptionalArguments(new StringArgument("code"));
+
 		if (randomCodes != null) {
 			throw new IllegalStateException("Unstuck helper list can only be initialized once");
 		}
 
 		randomCodes = new ArrayList<>();
 
-		new UnstuckCommandWithoutCode();
-		new UnstuckCommandWithCode();
-	}
+		executesPlayer((player, args) -> {
+			UUID uuid = player.getUniqueId();
+			String code = ThreadLocalRandom.current().nextInt(10000, 100000 + 1) + "";
 
-	private class UnstuckCommandWithoutCode extends CommandAPICommand {
-
-		public UnstuckCommandWithoutCode() {
-			super("stuck");
-			withPermission(commandPermission);
-
-			executesPlayer((player, args) -> {
-				UUID uuid = player.getUniqueId();
-				String code = ThreadLocalRandom.current().nextInt(10000, 100000 + 1) + "";
-
+			if (args.get("code") == null) {
 				if (findHelper(uuid) != null) {
 					player.sendMessage(
 							Component.text("Du kannst den Befehl nicht so oft eingeben!", MessageManager.ERROR));
@@ -83,24 +78,12 @@ public class UnstuckCommand {
 				UnstuckHelper helper = new UnstuckHelper(uuid, code);
 				helper.setTask(task);
 				randomCodes.add(helper);
-			});
 
-			register();
-		}
-	}
+			} else {
 
-	private class UnstuckCommandWithCode extends CommandAPICommand {
-
-		public UnstuckCommandWithCode() {
-			super("stuck");
-			withPermission(commandPermission);
-			withArguments(new IntegerArgument(""));
-
-			executesPlayer((player, args) -> {
-				UUID uuid = player.getUniqueId();
 				UnstuckHelper helper = findHelper(uuid);
 
-				if (helper == null || !helper.getCode().equalsIgnoreCase(args[0].toString())) {
+				if (helper == null || !helper.getCode().equalsIgnoreCase((String) args.get("code"))) {
 					player.sendMessage(Component.text(
 							"Beim Ausführen des Befehls ist ein Fehler aufgetreten. Der Befehl wird selbständig erneut ausgeführt.",
 							MessageManager.ERROR));
@@ -127,10 +110,12 @@ public class UnstuckCommand {
 				player.sendMessage(MessageManager.getPrefix().append(Component
 						.text("Du wurdest erfolgreich zum Spawn teleportiert! ", MessageManager.SUCCESS)
 						.append(Component.text("(Die Nutzung wurde protokolliert!)", MessageManager.SPACER))));
-			});
+			}
 
-			register();
-		}
+		});
+
+		register();
+
 	}
 
 	private static UnstuckHelper findHelper(UUID uuid) {

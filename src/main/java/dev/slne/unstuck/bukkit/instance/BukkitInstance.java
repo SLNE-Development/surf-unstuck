@@ -1,6 +1,9 @@
 package dev.slne.unstuck.bukkit.instance;
 
+import dev.jorel.commandapi.CommandAPI;
+import dev.jorel.commandapi.CommandAPIBukkitConfig;
 import dev.slne.data.bukkit.BukkitDataSource;
+import dev.slne.unstuck.bukkit.BukkitMain;
 import dev.slne.unstuck.bukkit.command.BukkitCommandManager;
 import dev.slne.unstuck.bukkit.listener.BukkitListenerManager;
 import dev.slne.unstuck.bukkit.utils.LoggingUtils;
@@ -17,6 +20,7 @@ public class BukkitInstance extends CoreInstance {
     public void onLoad() {
         super.onLoad();
 
+        CommandAPI.onLoad(new CommandAPIBukkitConfig(BukkitMain.getInstance()));
         commandManager = new BukkitCommandManager();
         listenerManager = new BukkitListenerManager();
         LoggingUtils.setuplogfolder();
@@ -26,6 +30,7 @@ public class BukkitInstance extends CoreInstance {
     public void onEnable() {
         super.onEnable();
 
+        CommandAPI.onEnable();
         commandManager.registerCommands();
         listenerManager.registerListeners();
     }
@@ -35,6 +40,7 @@ public class BukkitInstance extends CoreInstance {
         super.onDisable();
 
         listenerManager.unregisterListeners();
+        CommandAPI.onDisable();
     }
 
     /**

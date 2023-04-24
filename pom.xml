@@ -81,14 +81,8 @@
     </dependency>
     <dependency>
         <groupId>dev.jorel</groupId>
-        <artifactId>commandapi-core</artifactId>
-        <version>8.8.0</version>
-        <scope>provided</scope>
-    </dependency>
-    <dependency>
-        <groupId>dev.jorel</groupId>
-        <artifactId>commandapi-annotations</artifactId>
-        <version>8.8.0</version>
+        <artifactId>commandapi-bukkit-core</artifactId>
+        <version>9.0.0</version>
         <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -108,19 +102,6 @@
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
-          <configuration>
-              <annotationProcessorPaths>
-                  <path>
-                      <groupId>dev.jorel</groupId>
-                      <artifactId>commandapi-annotations</artifactId>
-                      <version>8.8.0</version>
-                  </path>
-              </annotationProcessorPaths>
-          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -152,22 +133,9 @@
     </pluginManagement>
     <plugins>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
-        <configuration>
-            <annotationProcessorPaths>
-                <path>
-                    <groupId>dev.jorel</groupId>
-                    <artifactId>commandapi-annotations</artifactId>
-                    <version>8.8.0</version>
-                </path>
-            </annotationProcessorPaths>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <version>3.4.0</version>
+        <version>3.5.0</version>
         <executions>
           <execution>
             <id>copy</id>
