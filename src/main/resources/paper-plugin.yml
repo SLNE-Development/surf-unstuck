@@ -1,12 +1,7 @@
-name: SurfUnstuck
-version: "2.0"
-main: dev.slne.unstuck.bukkit.BukkitMain
+name: SurfAntiExploit
+version: "1.0"
+main: dev.slne.antiexploit.bukkit.BukkitMain
 api-version: "1.19"
 
-bootstrapper: dev.slne.unstuck.bukkit.BukkitBootstrapper
-loader: dev.slne.unstuck.bukkit.BukkitLoader
-
-dependencies:
-    - name: WorldGuard
-      required: true
-      bootstrap: false
+bootstrapper: dev.slne.antiexploit.bukkit.BukkitBootstrapper
+loader: dev.slne.antiexploit.bukkit.BukkitLoader
