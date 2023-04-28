@@ -1,19 +1,19 @@
-package dev.slne.antiexploit.bukkit.command.commands;
+package dev.slne.unstuck.bukkit.command.commands;
 
 import org.bukkit.Location;
 
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.arguments.StringArgument;
-import dev.slne.antiexploit.bukkit.utils.LocationSerializer;
-import dev.slne.antiexploit.bukkit.utils.MessageManager;
+import dev.slne.unstuck.bukkit.utils.LocationSerializer;
+import dev.slne.unstuck.bukkit.utils.MessageManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent.Builder;
 
-public class ExploitTpCommand extends CommandAPICommand {
+public class UnstuckTpCommand extends CommandAPICommand {
 
-    public ExploitTpCommand() {
-        super("exploittp");
-        withPermission("exploit.tp");
+    public UnstuckTpCommand() {
+        super("unstucktp");
+        withPermission("unstuck.tp");
         withArguments(new StringArgument("serializedLocation"));
 
         executesPlayer((player, args) -> {

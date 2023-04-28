@@ -1,13 +1,13 @@
-package dev.slne.antiexploit.bukkit.instance;
+package dev.slne.unstuck.bukkit.instance;
 
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIBukkitConfig;
-import dev.slne.antiexploit.bukkit.BukkitMain;
-import dev.slne.antiexploit.bukkit.command.BukkitCommandManager;
-import dev.slne.antiexploit.bukkit.listener.BukkitListenerManager;
-import dev.slne.antiexploit.bukkit.utils.LoggingUtils;
-import dev.slne.antiexploit.core.instance.CoreInstance;
 import dev.slne.data.bukkit.BukkitDataSource;
+import dev.slne.unstuck.bukkit.BukkitMain;
+import dev.slne.unstuck.bukkit.command.BukkitCommandManager;
+import dev.slne.unstuck.bukkit.listener.BukkitListenerManager;
+import dev.slne.unstuck.bukkit.utils.LoggingUtils;
+import dev.slne.unstuck.core.instance.CoreInstance;
 
 public class BukkitInstance extends CoreInstance {
 

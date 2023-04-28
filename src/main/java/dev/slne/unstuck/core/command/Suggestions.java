@@ -1,4 +1,4 @@
-package dev.slne.antiexploit.core.command;
+package dev.slne.unstuck.core.command;
 
 import java.util.ArrayList;
 import java.util.List;

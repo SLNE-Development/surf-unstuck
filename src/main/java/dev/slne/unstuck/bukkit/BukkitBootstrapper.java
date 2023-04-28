@@ -1,4 +1,4 @@
-package dev.slne.antiexploit.bukkit;
+package dev.slne.unstuck.bukkit;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

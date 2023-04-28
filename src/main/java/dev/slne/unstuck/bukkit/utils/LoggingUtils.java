@@ -1,4 +1,4 @@
-package dev.slne.antiexploit.bukkit.utils;
+package dev.slne.unstuck.bukkit.utils;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -7,8 +7,9 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import dev.slne.antiexploit.bukkit.BukkitMain;
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
+
+import dev.slne.unstuck.bukkit.BukkitMain;
 
 public class LoggingUtils {
 

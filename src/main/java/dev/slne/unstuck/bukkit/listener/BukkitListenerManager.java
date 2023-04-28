@@ -1,13 +1,13 @@
-package dev.slne.antiexploit.bukkit.listener;
+package dev.slne.unstuck.bukkit.listener;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import dev.slne.antiexploit.bukkit.BukkitMain;
-import dev.slne.antiexploit.bukkit.listener.listeners.DispenserListener;
-import dev.slne.antiexploit.bukkit.listener.listeners.PistonListener;
+import dev.slne.unstuck.bukkit.BukkitMain;
+import dev.slne.unstuck.bukkit.listener.listeners.PortalListener;
+import dev.slne.unstuck.bukkit.listener.listeners.TabCompleteListener;
 
 public class BukkitListenerManager {
 
@@ -18,8 +18,8 @@ public class BukkitListenerManager {
         PluginManager pluginManager = Bukkit.getPluginManager();
         JavaPlugin plugin = BukkitMain.getInstance();
 
-        pluginManager.registerEvents(new PistonListener(), plugin);
-        pluginManager.registerEvents(new DispenserListener(), plugin);
+        pluginManager.registerEvents(new PortalListener(), plugin);
+        pluginManager.registerEvents(new TabCompleteListener(), plugin);
     }
 
     /**

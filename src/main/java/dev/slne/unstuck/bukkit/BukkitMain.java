@@ -1,9 +1,9 @@
-package dev.slne.antiexploit.bukkit;
+package dev.slne.unstuck.bukkit;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import dev.slne.antiexploit.bukkit.instance.BukkitApi;
-import dev.slne.antiexploit.bukkit.instance.BukkitInstance;
+import dev.slne.unstuck.bukkit.instance.BukkitApi;
+import dev.slne.unstuck.bukkit.instance.BukkitInstance;
 
 public class BukkitMain extends JavaPlugin {
 

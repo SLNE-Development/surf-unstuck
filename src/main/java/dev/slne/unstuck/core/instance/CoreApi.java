@@ -1,4 +1,4 @@
-package dev.slne.antiexploit.core.instance;
+package dev.slne.unstuck.core.instance;
 
 public class CoreApi {
 

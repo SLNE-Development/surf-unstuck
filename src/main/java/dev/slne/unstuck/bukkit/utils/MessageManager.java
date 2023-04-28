@@ -1,4 +1,4 @@
-package dev.slne.antiexploit.bukkit.utils;
+package dev.slne.unstuck.bukkit.utils;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -21,7 +21,7 @@ public class MessageManager {
 
     public static final Component getPrefix() {
         return Component.text().append(Component.text(">>", NamedTextColor.DARK_GRAY)).append(Component.space())
-                .append(Component.text("AntiExploit", MessageManager.PRIMARY)).append(Component.space())
+                .append(Component.text("Unstuck", MessageManager.PRIMARY)).append(Component.space())
                 .append(Component.text("|", NamedTextColor.DARK_GRAY)).append(Component.space()).build();
     }
 
