@@ -1,9 +1,8 @@
 name: SurfUnstuck
-version: "2.0"
+version: "2.1"
 main: dev.slne.unstuck.bukkit.BukkitMain
 api-version: "1.19"
 
-bootstrapper: dev.slne.unstuck.bukkit.BukkitBootstrapper
 loader: dev.slne.unstuck.bukkit.BukkitLoader
 
 dependencies:

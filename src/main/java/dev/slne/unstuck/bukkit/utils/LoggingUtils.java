@@ -7,9 +7,8 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.bukkit.ChatColor;
-
 import dev.slne.unstuck.bukkit.BukkitMain;
+import net.md_5.bungee.api.ChatColor;
 
 public class LoggingUtils {
 
