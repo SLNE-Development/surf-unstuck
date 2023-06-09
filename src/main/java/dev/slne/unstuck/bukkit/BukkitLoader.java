@@ -20,7 +20,7 @@ public class BukkitLoader implements PluginLoader {
 
         // Dependencies
         mavenResolver
-                .addDependency(new Dependency(new DefaultArtifact("dev.jorel:commandapi-bukkit-shade:9.0.0"), null));
+                .addDependency(new Dependency(new DefaultArtifact("dev.jorel:commandapi-bukkit-shade:9.0.2"), null));
 
         // Resolve
         classpathBuilder.addLibrary(mavenResolver);
