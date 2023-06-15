@@ -41,7 +41,7 @@ public class BukkitInstance {
 
     /**
      * Returns the {@link BukkitCommandManager}
-     * 
+     *
      * @return the {@link BukkitCommandManager}
      */
     public BukkitCommandManager getCommandManager() {
@@ -50,7 +50,7 @@ public class BukkitInstance {
 
     /**
      * Returns the {@link BukkitListenerManager}
-     * 
+     *
      * @return the {@link BukkitListenerManager}
      */
     public BukkitListenerManager getListenerManager() {

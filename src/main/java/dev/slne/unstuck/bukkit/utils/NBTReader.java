@@ -31,8 +31,6 @@ public class NBTReader {
         CompoundBinaryTag rawTag = BinaryTagIO.unlimitedReader().read(dataFile.toPath(), BinaryTagIO.Compression.GZIP);
         CompoundBinaryTag.Builder builder = CompoundBinaryTag.builder().put(rawTag);
 
-        System.out.println(location.getWorld().getKey().asString());
-
         World world = location.getWorld();
         builder.put("Dimension", StringBinaryTag.of(world.getKey().asString()));
 

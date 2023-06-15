@@ -3,11 +3,13 @@ version: "2.2"
 main: dev.slne.unstuck.bukkit.BukkitMain
 api-version: "1.20"
 
-loader: dev.slne.unstuck.bukkit.BukkitLoader
-
 dependencies:
     server:
         WorldGuard:
             load: BEFORE
-            required: false
+            required: true
+            join-classpath: true
+        CommandAPI:
+            load: BEFORE
+            required: true
             join-classpath: true
