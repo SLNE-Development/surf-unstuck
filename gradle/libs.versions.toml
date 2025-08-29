@@ -1,0 +1,5 @@
+[versions]
+worldguard = "7.0.15-SNAPSHOT"
+
+[libraries]
+worldguard = { module = "com.sk89q.worldguard:worldguard-bukkit", version.ref = "worldguard" }
