@@ -1,4 +1,4 @@
-package dev.slne.surf.unstuck.core.common
+package dev.slne.surf.unstuck
 
 import dev.slne.surf.cloud.api.common.SurfCloudApplication
 
