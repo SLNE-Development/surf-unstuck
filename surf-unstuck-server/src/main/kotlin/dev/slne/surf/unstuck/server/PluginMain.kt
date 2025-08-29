@@ -12,3 +12,5 @@ class PluginMain : StandalonePlugin() {
     override suspend fun disable() {
     }
 }
+
+val plugin get() = StandalonePlugin.getPlugin(PluginMain::class)

@@ -7,11 +7,10 @@ import dev.slne.surf.cloud.api.common.player.toCloudPlayer
 import dev.slne.surf.cloud.api.common.server.CloudServerManager
 import dev.slne.surf.surfapi.core.api.messages.adventure.buildText
 import dev.slne.surf.surfapi.core.api.messages.adventure.sendText
-import dev.slne.surf.surfapi.core.api.util.logger
 import dev.slne.surf.unstuck.core.common.UnstuckUsage
 import dev.slne.surf.unstuck.core.common.netty.protocol.serverbound.ServerboundCreateUnstuckUsagePacket
 import dev.slne.surf.unstuck.server.UnstuckService
-import kotlinx.coroutines.*
+import dev.slne.surf.unstuck.server.plugin
 import net.kyori.adventure.text.event.ClickEvent
 import org.springframework.stereotype.Component
 
@@ -19,14 +18,6 @@ import org.springframework.stereotype.Component
 class UnstuckUsageListener(
     private val unstuckService: UnstuckService
 ) {
-
-    private val log = logger()
-    private val scope =
-        CoroutineScope(SupervisorJob() + CoroutineName("UnstuckUsageListener") + CoroutineExceptionHandler { context, throwable ->
-            log.atSevere()
-                .withCause(throwable)
-                .log("Exception in coroutine %s", context[CoroutineName]?.name ?: "unknown")
-        })
 
     @SurfNettyPacketHandler
     suspend fun handleCreateUsage(packet: ServerboundCreateUnstuckUsagePacket) {
@@ -68,7 +59,7 @@ class UnstuckUsageListener(
         cloudPlayer: CloudPlayer,
         otherPlayer: OfflineCloudPlayer,
         usage: UnstuckUsage
-    ) = scope.launch {
+    ) = plugin.launch {
         val result = cloudPlayer.connectToServer(usage.server)
 
         if (!result.isSuccess) {
