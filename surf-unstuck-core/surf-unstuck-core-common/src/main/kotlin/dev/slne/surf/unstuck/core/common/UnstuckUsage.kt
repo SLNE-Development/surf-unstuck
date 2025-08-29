@@ -19,7 +19,7 @@ data class UnstuckUsage(
     var acknowledgedBy: UUID? = null,
 ) {
     @Transient
-    val cloudPlayer = uuid.toOfflineCloudPlayer(false)
+    val cloudPlayer get() = uuid.toOfflineCloudPlayer(false)
 
     enum class DbResult {
         SUCCESS,
@@ -32,7 +32,7 @@ data class UnstuckUsage(
     }
 
     sealed class Result(
-        @Transient val message: SurfComponentBuilder.() -> Unit
+        val message: SurfComponentBuilder.() -> Unit
     ) : ComponentLike {
         override fun asComponent() = buildText(message)
 
