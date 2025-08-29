@@ -9,6 +9,7 @@ surfPaperPluginApi {
     mainClass("dev.slne.surf.unstuck.paper.SurfUnstuck")
     bootstrapper("dev.slne.surf.unstuck.paper.SurfUnstuckBootstrap")
     foliaSupported(true)
+    generateLibraryLoader(false)
 
     serverDependencies {
         registerRequired("WorldGuard")
