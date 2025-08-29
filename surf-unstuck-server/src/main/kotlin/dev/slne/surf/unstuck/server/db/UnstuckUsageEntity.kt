@@ -35,5 +35,6 @@ class UnstuckUsageEntity(id: EntityID<Long>) : AuditableLongEntity(id, UnstuckUs
         result = result,
         server = server,
         acknowledgedBy = acknowledgedBy,
+        location = location
     )
 }
