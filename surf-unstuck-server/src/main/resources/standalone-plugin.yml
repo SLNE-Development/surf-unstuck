@@ -1,0 +1,7 @@
+name: surf-unstuck-server
+main: 'dev.slne.surf.unstuck.server.PluginMain'
+bootstrapper: 'dev.slne.surf.unstuck.server.PluginBootstrap'
+version: 1.21.7-1.0.0
+description: 'Unstuck Plugin'
+authors:
+  - 'Ammo'
