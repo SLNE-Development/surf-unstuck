@@ -13,6 +13,11 @@ surfPaperPluginApi {
 
     serverDependencies {
         registerRequired("WorldGuard")
+        registerRequired("surf-cloud-bukkit")
+    }
+
+    bootstrapDependencies {
+        registerRequired("surf-cloud-bukkit")
     }
 }
 
