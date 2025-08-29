@@ -1,6 +1,6 @@
 package dev.slne.surf.unstuck.core.common
 
-import dev.slne.surf.cloud.api.common.player.teleport.TeleportLocation
+import dev.slne.surf.cloud.api.common.player.teleport.WorldLocation
 import dev.slne.surf.cloud.api.common.player.toOfflineCloudPlayer
 import dev.slne.surf.surfapi.core.api.messages.adventure.appendNewline
 import dev.slne.surf.surfapi.core.api.messages.adventure.buildText
@@ -14,7 +14,7 @@ data class UnstuckUsage(
     val uuid: UUID,
     val executedAt: ZonedDateTime,
     val server: String,
-    val location: TeleportLocation,
+    val location: WorldLocation,
     var result: DbResult? = null,
     var acknowledgedBy: UUID? = null,
 ) {

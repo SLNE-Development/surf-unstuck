@@ -6,7 +6,7 @@ package dev.slne.surf.unstuck.paper.dialogs
 import com.github.shynixn.mccoroutine.folia.launch
 import com.github.shynixn.mccoroutine.folia.regionDispatcher
 import dev.slne.surf.cloud.api.client.netty.packet.fireAndForget
-import dev.slne.surf.cloud.api.common.player.teleport.TeleportLocation
+import dev.slne.surf.cloud.api.common.player.teleport.WorldLocation
 import dev.slne.surf.cloud.api.common.player.toCloudPlayer
 import dev.slne.surf.surfapi.bukkit.api.dialog.base
 import dev.slne.surf.surfapi.bukkit.api.dialog.builder.actionButton
@@ -102,7 +102,7 @@ private fun confirmAction() = actionButton {
                     uuid = player.uniqueId,
                     executedAt = ZonedDateTime.now(),
                     server = server.name,
-                    location = TeleportLocation(
+                    location = WorldLocation(
                         world = location.world.uid,
                         x = location.x,
                         y = location.y,

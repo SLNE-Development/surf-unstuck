@@ -1,6 +1,6 @@
 package dev.slne.surf.unstuck.server.db
 
-import dev.slne.surf.cloud.api.common.player.teleport.TeleportLocation
+import dev.slne.surf.cloud.api.common.player.teleport.WorldLocation
 import dev.slne.surf.cloud.api.server.exposed.table.AuditableLongEntity
 import dev.slne.surf.cloud.api.server.exposed.table.AuditableLongEntityClass
 import dev.slne.surf.unstuck.core.common.UnstuckUsage
@@ -20,8 +20,8 @@ class UnstuckUsageEntity(id: EntityID<Long>) : AuditableLongEntity(id, UnstuckUs
 
     var acknowledgedBy by UnstuckUsagesTable.acknowledgedBy
 
-    var location: TeleportLocation
-        get() = TeleportLocation(world, x, y, z)
+    var location: WorldLocation
+        get() = WorldLocation(world, x, y, z)
         set(value) {
             world = value.world
             x = value.x
