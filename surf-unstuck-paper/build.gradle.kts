@@ -5,24 +5,20 @@ plugins {
 }
 
 surfPaperPluginApi {
-    withCloudClientPaper()
-    mainClass("dev.slne.surf.unstuck.paper.SurfUnstuck")
-    bootstrapper("dev.slne.surf.unstuck.paper.SurfUnstuckBootstrap")
+    mainClass("dev.slne.surf.unstuck.paper.PaperMain")
     foliaSupported(true)
     generateLibraryLoader(false)
 
+    withCorePaper()
+
     serverDependencies {
         registerRequired("WorldGuard")
-        registerRequired("surf-cloud-bukkit")
-    }
-
-    bootstrapDependencies {
-        registerRequired("surf-cloud-bukkit")
     }
 }
 
 dependencies {
-    api(project(":surf-unstuck-core:surf-unstuck-core-common"))
+    api(project(":surf-unstuck-core"))
+    runtimeOnly(project(":surf-unstuck-backend"))
 
     compileOnly(libs.worldguard) {
         exclude(group = "com.google.guava", module = "guava")

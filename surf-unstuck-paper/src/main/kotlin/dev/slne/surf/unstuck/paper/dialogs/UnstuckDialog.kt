@@ -5,9 +5,7 @@ package dev.slne.surf.unstuck.paper.dialogs
 
 import com.github.shynixn.mccoroutine.folia.launch
 import com.github.shynixn.mccoroutine.folia.regionDispatcher
-import dev.slne.surf.cloud.api.client.netty.packet.fireAndForget
-import dev.slne.surf.cloud.api.common.player.teleport.WorldLocation
-import dev.slne.surf.cloud.api.common.player.toCloudPlayer
+import dev.slne.surf.core.api.paper.util.toSurfPlayer
 import dev.slne.surf.surfapi.bukkit.api.dialog.base
 import dev.slne.surf.surfapi.bukkit.api.dialog.builder.actionButton
 import dev.slne.surf.surfapi.bukkit.api.dialog.clearDialogs
@@ -15,8 +13,9 @@ import dev.slne.surf.surfapi.bukkit.api.dialog.dialog
 import dev.slne.surf.surfapi.bukkit.api.dialog.type
 import dev.slne.surf.surfapi.bukkit.api.nms.NmsUseWithCaution
 import dev.slne.surf.surfapi.core.api.messages.adventure.appendNewline
-import dev.slne.surf.unstuck.core.common.UnstuckUsage
-import dev.slne.surf.unstuck.core.common.netty.protocol.serverbound.ServerboundCreateUnstuckUsagePacket
+import dev.slne.surf.unstuck.core.service.unstuckService
+import dev.slne.surf.unstuck.core.usage.UnstuckUsage
+import dev.slne.surf.unstuck.core.util.WorldLocation
 import dev.slne.surf.unstuck.paper.commands.usedUnstuckCache
 import dev.slne.surf.unstuck.paper.plugin
 import dev.slne.surf.unstuck.paper.utils.canBuildAtOwnLocation
@@ -90,10 +89,8 @@ private fun confirmAction() = actionButton {
     action {
         playerCallback { player ->
             plugin.launch {
-                val cloudPlayer = player.toCloudPlayer()
-                    ?: error("No cloud player found for player ${player.uniqueId} in surf-unstuck usage. This should never happen.")
-
-                val server = cloudPlayer.currentServer()
+                val cloudPlayer = player.toSurfPlayer()
+                val server = cloudPlayer.currentServer?.name ?: "unknown"
 
                 val location = player.location
                 val spawnLocation = player.world.spawnLocation
@@ -101,9 +98,9 @@ private fun confirmAction() = actionButton {
                 val usage = UnstuckUsage(
                     uuid = player.uniqueId,
                     executedAt = ZonedDateTime.now(),
-                    server = server.name,
+                    server = server,
                     location = WorldLocation(
-                        world = location.world.uid,
+                        worldUuid = location.world.uid,
                         x = location.x,
                         y = location.y,
                         z = location.z
@@ -128,7 +125,10 @@ private fun confirmAction() = actionButton {
 
 private fun logWithResult(player: Player, usage: UnstuckUsage, result: UnstuckUsage.DbResult) {
     usage.result = result
-    ServerboundCreateUnstuckUsagePacket(usage).fireAndForget()
+
+    plugin.launch {
+        unstuckService.createUsage(usage)
+    }
 
     player.showDialog(createNotice(usage))
 }

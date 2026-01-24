@@ -5,7 +5,7 @@ import com.sksamuel.aedile.core.expireAfterWrite
 import dev.jorel.commandapi.kotlindsl.commandAPICommand
 import dev.jorel.commandapi.kotlindsl.playerExecutor
 import dev.slne.surf.surfapi.core.api.messages.adventure.sendText
-import dev.slne.surf.unstuck.paper.commands.utils.PermissionRegistry
+import dev.slne.surf.unstuck.paper.permission.PermissionRegistry
 import dev.slne.surf.unstuck.paper.dialogs.createUnstuckDialog
 import java.time.ZonedDateTime
 import java.util.*
@@ -25,8 +25,7 @@ fun unstuckCommand() = commandAPICommand("unstuck") {
 
         if (cacheEntry != null) {
             player.sendText {
-                appendPrefix()
-
+                appendErrorPrefix()
                 error("Du darfst den Befehl nicht so häufig benutzen.")
             }
 

@@ -4,6 +4,6 @@ plugins {
 
 rootProject.name = "surf-unstuck"
 
-include("surf-unstuck-core:surf-unstuck-core-common")
-include("surf-unstuck-server")
+include("surf-unstuck-core")
+include("surf-unstuck-backend")
 include("surf-unstuck-paper")
