@@ -18,5 +18,7 @@ class UnstuckRepository {
             it[y] = usage.location.y
             it[z] = usage.location.z
         }
+
+        Unit
     }
 }
