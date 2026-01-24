@@ -1,4 +1,4 @@
-package dev.slne.surf.unstuck.backend.db
+package dev.slne.surf.unstuck.backend.table
 
 import dev.slne.surf.database.columns.nativeUuid
 import dev.slne.surf.database.table.AuditableLongIdTable

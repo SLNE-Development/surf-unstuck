@@ -3,9 +3,9 @@ package dev.slne.surf.unstuck.paper.listener
 import com.github.shynixn.mccoroutine.folia.launch
 import com.github.shynixn.mccoroutine.folia.regionDispatcher
 import com.github.shynixn.mccoroutine.folia.ticks
-import dev.slne.surf.cloud.api.common.util.mutableObject2ObjectMapOf
-import dev.slne.surf.cloud.api.common.util.mutableObjectListOf
 import dev.slne.surf.surfapi.core.api.messages.adventure.sendText
+import dev.slne.surf.surfapi.core.api.util.mutableObject2ObjectMapOf
+import dev.slne.surf.surfapi.core.api.util.mutableObjectListOf
 import dev.slne.surf.unstuck.paper.plugin
 import dev.slne.surf.unstuck.paper.utils.setOfflineLocation
 import kotlinx.coroutines.Job
@@ -59,9 +59,8 @@ object PortalListener : Listener {
                         player.teleportAsync(oldLocation)
 
                         player.sendText {
-                            appendPrefix()
-
-                            error("Du hast das Portal nicht rechtzeitig verlassen und wurdest zu deiner letzten Position zurückgebracht.")
+                            appendInfoPrefix()
+                            info("Du hast das Portal nicht rechtzeitig verlassen und wurdest zu deiner letzten Position zurückgebracht.")
                         }
 
                         locations.remove(uuid)
