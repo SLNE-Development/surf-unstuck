@@ -4,6 +4,7 @@ import dev.slne.surf.database.libs.org.jetbrains.exposed.v1.r2dbc.insert
 import dev.slne.surf.database.libs.org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 import dev.slne.surf.unstuck.backend.table.UnstuckUsagesTable
 import dev.slne.surf.unstuck.core.usage.UnstuckUsage
+import java.time.OffsetDateTime
 
 val unstuckRepository = UnstuckRepository()
 
@@ -17,6 +18,8 @@ class UnstuckRepository {
             it[x] = usage.location.x
             it[y] = usage.location.y
             it[z] = usage.location.z
+            it[updatedAt] = OffsetDateTime.now()
+            it[createdAt] = OffsetDateTime.now()
         }
 
         Unit
