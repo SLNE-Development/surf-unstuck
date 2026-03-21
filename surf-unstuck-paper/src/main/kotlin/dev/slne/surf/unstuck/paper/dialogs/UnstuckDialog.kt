@@ -24,6 +24,7 @@ import dev.slne.surf.unstuck.paper.plugin
 import dev.slne.surf.unstuck.paper.utils.canBuildAtOwnLocation
 import io.papermc.paper.registry.data.dialog.DialogBase
 import kotlinx.coroutines.withContext
+import net.kyori.adventure.text.event.ClickEvent
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.entity.Player
@@ -148,13 +149,20 @@ private fun logWithResult(player: Player, usage: UnstuckUsage, result: UnstuckUs
             variableValue(player.name)
             info(" hat versucht, den Unstuck-Befehl zu verwenden, obwohl er nicht feststeckt.")
         }
-        clickCallback {
-            val staff = it as? Player ?: return@clickCallback
-            staff.teleportAsync(Location(Bukkit.getWorld(usage.location.worldUuid) ?: return@clickCallback,
+        hoverEvent(buildText {
+            spacer("- ")
+            info("Ort: ")
+            variableValue("${usage.location.x}, ${usage.location.y}, ${usage.location.z} in Welt ${Bukkit.getWorld(usage.location.worldUuid)?.name}")
+            appendNewline(2)
+            spacer("Klicke, um dich zu teleportieren.")
+        })
+        clickEvent(ClickEvent.callback {
+            val staff = it as? Player ?: return@callback
+            staff.teleportAsync(Location(Bukkit.getWorld(usage.location.worldUuid) ?: return@callback,
                 usage.location.x,
                 usage.location.y,
                 usage.location.z))
-        }
+        })
     }, PermissionRegistry.ALERT)
 
     player.showDialog(createNotice(usage))

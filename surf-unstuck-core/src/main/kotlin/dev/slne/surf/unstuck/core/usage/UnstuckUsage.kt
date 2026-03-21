@@ -37,7 +37,7 @@ data class UnstuckUsage(
         })
 
         object FailedCanBuild : Result({
-            error("Die teleportation zum Spawn ist fehlgeschlagen, da du nicht Stuck bist.")
+            error("Die Teleportation zum Spawn ist fehlgeschlagen, da du nicht Stuck bist.")
             appendProtocolizedInformation()
         })
     }
