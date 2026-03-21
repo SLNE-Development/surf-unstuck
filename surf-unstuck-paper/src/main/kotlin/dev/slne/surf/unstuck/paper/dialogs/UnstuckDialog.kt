@@ -137,22 +137,31 @@ private fun logWithResult(player: Player, usage: UnstuckUsage, result: UnstuckUs
         unstuckService.createUsage(usage)
     }
 
+    val x = usage.location.x.round1()
+    val y = usage.location.y.round1()
+    val z = usage.location.z.round1()
+    val worldName = Bukkit.getWorld(usage.location.worldUuid)?.name
+
     Bukkit.broadcast(buildText {
         if(result == UnstuckUsage.DbResult.SUCCESS) {
             appendWarningPrefix()
             info("Der Spieler ")
             variableValue(player.name)
-            info(" hat den Unstuck-Befehl verwendet und wurde zum Spawn teleportiert.")
+            info(" hat den Unstuck-Befehl verwendet und wurde zum Spawn teleportiert. ")
+            info("Koordinaten: ")
+            variableValue("$x, $y, $z")
         } else {
             appendWarningPrefix()
             info("Der Spieler ")
             variableValue(player.name)
-            info(" hat versucht, den Unstuck-Befehl zu verwenden, obwohl er nicht feststeckt.")
+            info(" hat versucht, den Unstuck-Befehl zu verwenden, obwohl er nicht feststeckt. ")
+            info("Koordinaten: ")
+            variableValue("$x, $y, $z")
         }
         hoverEvent(buildText {
             spacer("- ")
             info("Ort: ")
-            variableValue("${usage.location.x}, ${usage.location.y}, ${usage.location.z} in Welt ${Bukkit.getWorld(usage.location.worldUuid)?.name}")
+            variableValue("$x, $y, $z in Welt $worldName")
             appendNewline(2)
             spacer("Klicke, um dich zu teleportieren.")
         })
@@ -178,3 +187,5 @@ private fun cancelAction() = actionButton {
         }
     }
 }
+
+private fun Double.round1(): Double = kotlin.math.round(this * 10) / 10

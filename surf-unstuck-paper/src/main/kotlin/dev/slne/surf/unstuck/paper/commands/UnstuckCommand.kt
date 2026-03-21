@@ -3,6 +3,7 @@ package dev.slne.surf.unstuck.paper.commands
 import com.github.benmanes.caffeine.cache.Caffeine
 import com.sksamuel.aedile.core.expireAfterWrite
 import dev.jorel.commandapi.kotlindsl.commandAPICommand
+import dev.jorel.commandapi.kotlindsl.commandTree
 import dev.jorel.commandapi.kotlindsl.playerExecutor
 import dev.slne.surf.surfapi.core.api.messages.adventure.sendText
 import dev.slne.surf.unstuck.paper.permission.PermissionRegistry
@@ -17,7 +18,7 @@ val usedUnstuckCache = Caffeine.newBuilder()
         ZonedDateTime.now()
     }
 
-fun unstuckCommand() = commandAPICommand("unstuck") {
+fun unstuckCommand() = commandTree("unstuck") {
     withPermission(PermissionRegistry.BASE)
 
     playerExecutor { player, _ ->
