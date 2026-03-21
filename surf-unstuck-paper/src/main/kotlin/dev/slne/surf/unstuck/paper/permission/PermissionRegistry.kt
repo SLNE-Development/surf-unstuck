@@ -7,5 +7,6 @@ object PermissionRegistry : PermissionRegistry() {
     private const val COMMAND_PREFIX = "$PREFIX.command"
 
     val BASE = create("$COMMAND_PREFIX.unstuck")
+    val ALERT = create("$PREFIX.alert")
 
 }

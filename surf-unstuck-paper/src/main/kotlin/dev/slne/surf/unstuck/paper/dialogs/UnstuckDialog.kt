@@ -13,15 +13,21 @@ import dev.slne.surf.surfapi.bukkit.api.dialog.dialog
 import dev.slne.surf.surfapi.bukkit.api.dialog.type
 import dev.slne.surf.surfapi.bukkit.api.nms.NmsUseWithCaution
 import dev.slne.surf.surfapi.core.api.messages.adventure.appendNewline
+import dev.slne.surf.surfapi.core.api.messages.adventure.buildText
+import dev.slne.surf.surfapi.core.api.messages.adventure.clickCallback
 import dev.slne.surf.unstuck.core.service.unstuckService
 import dev.slne.surf.unstuck.core.usage.UnstuckUsage
 import dev.slne.surf.unstuck.core.util.WorldLocation
 import dev.slne.surf.unstuck.paper.commands.usedUnstuckCache
+import dev.slne.surf.unstuck.paper.permission.PermissionRegistry
 import dev.slne.surf.unstuck.paper.plugin
 import dev.slne.surf.unstuck.paper.utils.canBuildAtOwnLocation
 import io.papermc.paper.registry.data.dialog.DialogBase
 import kotlinx.coroutines.withContext
+import org.bukkit.Bukkit
+import org.bukkit.Location
 import org.bukkit.entity.Player
+import org.bukkit.event.player.PlayerTeleportEvent
 import java.time.ZonedDateTime
 
 fun createUnstuckDialog() = dialog {
@@ -129,6 +135,27 @@ private fun logWithResult(player: Player, usage: UnstuckUsage, result: UnstuckUs
     plugin.launch {
         unstuckService.createUsage(usage)
     }
+
+    Bukkit.broadcast(buildText {
+        if(result == UnstuckUsage.DbResult.SUCCESS) {
+            appendWarningPrefix()
+            info("Der Spieler ")
+            variableValue(player.name)
+            info(" hat den Unstuck-Befehl verwendet und wurde zum Spawn teleportiert.")
+        } else {
+            appendWarningPrefix()
+            info("Der Spieler ")
+            variableValue(player.name)
+            info(" hat versucht, den Unstuck-Befehl zu verwenden, obwohl er nicht feststeckt.")
+        }
+        clickCallback {
+            val staff = it as? Player ?: return@clickCallback
+            staff.teleportAsync(Location(Bukkit.getWorld(usage.location.worldUuid) ?: return@clickCallback,
+                usage.location.x,
+                usage.location.y,
+                usage.location.z))
+        }
+    }, PermissionRegistry.ALERT)
 
     player.showDialog(createNotice(usage))
 }
