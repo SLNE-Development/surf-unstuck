@@ -114,25 +114,26 @@ object PortalListener : Listener {
         }.getOrNull() ?: false
     }
 
-    private fun isInPortal(player: Player): Boolean {
+    private suspend fun isInPortal(player: Player): Boolean {
         val location = player.location
         val block = location.block
 
-        val relatives = mutableObjectListOf(
-            block.type,
-            block.getRelative(BlockFace.UP, 1).type
-        )
+        return withContext(plugin.regionDispatcher(location)) {
+            val relatives = mutableObjectListOf(
+                block.type,
+                block.getRelative(BlockFace.UP, 1).type
+            )
 
-        if (relatives[0] == Material.AIR && relatives[1] == Material.AIR) {
-            return false
+            if (relatives[0] == Material.AIR && relatives[1] == Material.AIR) {
+                return@withContext false
+            }
+
+            relatives.add(block.getRelative(BlockFace.NORTH, 1).type)
+            relatives.add(block.getRelative(BlockFace.EAST, 1).type)
+            relatives.add(block.getRelative(BlockFace.SOUTH, 1).type)
+            relatives.add(block.getRelative(BlockFace.WEST, 1).type)
+
+            relatives.contains(Material.NETHER_PORTAL)
         }
-
-        relatives.add(block.getRelative(BlockFace.NORTH, 1).type)
-        relatives.add(block.getRelative(BlockFace.EAST, 1).type)
-        relatives.add(block.getRelative(BlockFace.SOUTH, 1).type)
-        relatives.add(block.getRelative(BlockFace.WEST, 1).type)
-
-        return relatives.contains(Material.NETHER_PORTAL)
     }
-
 }
