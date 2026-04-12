@@ -1,7 +1,7 @@
-import dev.slne.surf.surfapi.gradle.util.registerRequired
+import dev.slne.surf.api.gradle.util.registerRequired
 
 plugins {
-    id("dev.slne.surf.surfapi.gradle.paper-plugin")
+    id("dev.slne.surf.api.gradle.paper-plugin")
 }
 
 surfPaperPluginApi {
@@ -17,8 +17,7 @@ surfPaperPluginApi {
 }
 
 dependencies {
-    api(project(":surf-unstuck-core"))
-    runtimeOnly(project(":surf-unstuck-backend"))
+    api(projects.surfUnstuckCore.surfUnstuckCoreClient)
 
     compileOnly(libs.worldguard) {
         exclude(group = "com.google.guava", module = "guava")

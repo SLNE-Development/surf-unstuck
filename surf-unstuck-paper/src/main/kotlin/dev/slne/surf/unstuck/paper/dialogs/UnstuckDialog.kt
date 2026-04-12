@@ -5,19 +5,18 @@ package dev.slne.surf.unstuck.paper.dialogs
 
 import com.github.shynixn.mccoroutine.folia.launch
 import com.github.shynixn.mccoroutine.folia.regionDispatcher
+import dev.slne.surf.api.core.messages.adventure.appendNewline
+import dev.slne.surf.api.core.messages.adventure.buildText
+import dev.slne.surf.api.paper.dialog.base
+import dev.slne.surf.api.paper.dialog.builder.actionButton
+import dev.slne.surf.api.paper.dialog.clearDialogs
+import dev.slne.surf.api.paper.dialog.dialog
+import dev.slne.surf.api.paper.dialog.type
+import dev.slne.surf.api.paper.nms.NmsUseWithCaution
 import dev.slne.surf.core.api.paper.util.toSurfPlayer
-import dev.slne.surf.surfapi.bukkit.api.dialog.base
-import dev.slne.surf.surfapi.bukkit.api.dialog.builder.actionButton
-import dev.slne.surf.surfapi.bukkit.api.dialog.clearDialogs
-import dev.slne.surf.surfapi.bukkit.api.dialog.dialog
-import dev.slne.surf.surfapi.bukkit.api.dialog.type
-import dev.slne.surf.surfapi.bukkit.api.nms.NmsUseWithCaution
-import dev.slne.surf.surfapi.core.api.messages.adventure.appendNewline
-import dev.slne.surf.surfapi.core.api.messages.adventure.buildText
-import dev.slne.surf.surfapi.core.api.messages.adventure.clickCallback
-import dev.slne.surf.unstuck.core.service.unstuckService
-import dev.slne.surf.unstuck.core.usage.UnstuckUsage
-import dev.slne.surf.unstuck.core.util.WorldLocation
+import dev.slne.surf.unstuck.core.client.service.UnstuckService
+import dev.slne.surf.unstuck.core.common.usage.UnstuckUsage
+import dev.slne.surf.unstuck.core.common.util.WorldLocation
 import dev.slne.surf.unstuck.paper.commands.usedUnstuckCache
 import dev.slne.surf.unstuck.paper.permission.PermissionRegistry
 import dev.slne.surf.unstuck.paper.plugin
@@ -28,7 +27,6 @@ import net.kyori.adventure.text.event.ClickEvent
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.entity.Player
-import org.bukkit.event.player.PlayerTeleportEvent
 import java.time.ZonedDateTime
 
 fun createUnstuckDialog() = dialog {
@@ -134,7 +132,7 @@ private fun logWithResult(player: Player, usage: UnstuckUsage, result: UnstuckUs
     usage.result = result
 
     plugin.launch {
-        unstuckService.createUsage(usage)
+        UnstuckService.createUsage(usage)
     }
 
     val x = usage.location.x.round1()
@@ -143,7 +141,7 @@ private fun logWithResult(player: Player, usage: UnstuckUsage, result: UnstuckUs
     val worldName = Bukkit.getWorld(usage.location.worldUuid)?.name
 
     Bukkit.broadcast(buildText {
-        if(result == UnstuckUsage.DbResult.SUCCESS) {
+        if (result == UnstuckUsage.DbResult.SUCCESS) {
             appendWarningPrefix()
             info("Der Spieler ")
             variableValue(player.name)
@@ -167,10 +165,14 @@ private fun logWithResult(player: Player, usage: UnstuckUsage, result: UnstuckUs
         })
         clickEvent(ClickEvent.callback {
             val staff = it as? Player ?: return@callback
-            staff.teleportAsync(Location(Bukkit.getWorld(usage.location.worldUuid) ?: return@callback,
-                usage.location.x,
-                usage.location.y,
-                usage.location.z))
+            staff.teleportAsync(
+                Location(
+                    Bukkit.getWorld(usage.location.worldUuid) ?: return@callback,
+                    usage.location.x,
+                    usage.location.y,
+                    usage.location.z
+                )
+            )
         })
     }, PermissionRegistry.ALERT)
 

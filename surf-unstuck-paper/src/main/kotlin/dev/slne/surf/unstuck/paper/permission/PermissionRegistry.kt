@@ -1,6 +1,6 @@
 package dev.slne.surf.unstuck.paper.permission
 
-import dev.slne.surf.surfapi.bukkit.api.permission.PermissionRegistry
+import dev.slne.surf.api.paper.permission.PermissionRegistry
 
 object PermissionRegistry : PermissionRegistry() {
     private const val PREFIX = "surf.unstuck"

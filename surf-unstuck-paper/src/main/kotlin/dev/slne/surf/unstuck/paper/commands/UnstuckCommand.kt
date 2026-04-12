@@ -2,12 +2,11 @@ package dev.slne.surf.unstuck.paper.commands
 
 import com.github.benmanes.caffeine.cache.Caffeine
 import com.sksamuel.aedile.core.expireAfterWrite
-import dev.jorel.commandapi.kotlindsl.commandAPICommand
 import dev.jorel.commandapi.kotlindsl.commandTree
 import dev.jorel.commandapi.kotlindsl.playerExecutor
-import dev.slne.surf.surfapi.core.api.messages.adventure.sendText
-import dev.slne.surf.unstuck.paper.permission.PermissionRegistry
+import dev.slne.surf.api.core.messages.adventure.sendText
 import dev.slne.surf.unstuck.paper.dialogs.createUnstuckDialog
+import dev.slne.surf.unstuck.paper.permission.PermissionRegistry
 import java.time.ZonedDateTime
 import java.util.*
 import kotlin.time.Duration.Companion.seconds

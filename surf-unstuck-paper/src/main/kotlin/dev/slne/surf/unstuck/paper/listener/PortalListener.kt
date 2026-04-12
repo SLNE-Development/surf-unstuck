@@ -3,9 +3,9 @@ package dev.slne.surf.unstuck.paper.listener
 import com.github.shynixn.mccoroutine.folia.launch
 import com.github.shynixn.mccoroutine.folia.regionDispatcher
 import com.github.shynixn.mccoroutine.folia.ticks
-import dev.slne.surf.surfapi.core.api.messages.adventure.sendText
-import dev.slne.surf.surfapi.core.api.util.mutableObject2ObjectMapOf
-import dev.slne.surf.surfapi.core.api.util.mutableObjectListOf
+import dev.slne.surf.api.core.messages.adventure.sendText
+import dev.slne.surf.api.core.util.mutableObject2ObjectMapOf
+import dev.slne.surf.api.core.util.mutableObjectListOf
 import dev.slne.surf.unstuck.paper.plugin
 import dev.slne.surf.unstuck.paper.utils.setOfflineLocation
 import kotlinx.coroutines.Job
@@ -21,6 +21,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.event.player.PlayerTeleportEvent
 import java.util.*
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 object PortalListener : Listener {
@@ -80,7 +81,7 @@ object PortalListener : Listener {
         val player = event.player
 
         plugin.launch {
-            delay(1.ticks)
+            delay(1.ticks.milliseconds)
 
             setLocation(player)
             cancelJob(player)
