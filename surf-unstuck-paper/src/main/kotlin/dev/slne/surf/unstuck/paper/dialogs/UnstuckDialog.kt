@@ -42,9 +42,9 @@ fun createUnstuckDialog() = dialog {
                 info("Bitte beachte folgende Informationen:")
                 appendNewline()
 
-                error("Der Befehl darf nur verwendet werden, wenn du auch tatsächlich feststeckst")
+                error("Der Befehl darf nur verwendet werden, wenn du auch tatsächlich feststeckst.")
                 appendSpace()
-                error("Der Missbrauch des Befehls wird als Exploiting gewertet und dementsprechend geahndet")
+                error("Der Missbrauch des Befehls wird als Exploiting gewertet und dementsprechend geahndet.")
                 appendNewline(2)
 
                 info("Möchtest du dich wirklich zum Spawn teleportieren lassen?")
