@@ -5,7 +5,6 @@ package dev.slne.surf.unstuck.paper.dialogs
 
 import com.github.shynixn.mccoroutine.folia.launch
 import com.github.shynixn.mccoroutine.folia.regionDispatcher
-import dev.slne.surf.api.core.messages.adventure.appendNewline
 import dev.slne.surf.api.core.messages.adventure.buildText
 import dev.slne.surf.api.paper.dialog.base
 import dev.slne.surf.api.paper.dialog.builder.actionButton
@@ -23,6 +22,7 @@ import dev.slne.surf.unstuck.paper.plugin
 import dev.slne.surf.unstuck.paper.utils.canBuildAtOwnLocation
 import io.papermc.paper.registry.data.dialog.DialogBase
 import kotlinx.coroutines.withContext
+import net.kyori.adventure.text.event.ClickCallback
 import net.kyori.adventure.text.event.ClickEvent
 import org.bukkit.Bukkit
 import org.bukkit.Location
@@ -163,7 +163,7 @@ private fun logWithResult(player: Player, usage: UnstuckUsage, result: UnstuckUs
             appendNewline(2)
             spacer("Klicke, um dich zu teleportieren.")
         })
-        clickEvent(ClickEvent.callback {
+        clickEvent(ClickEvent.callback({
             val staff = it as? Player ?: return@callback
             staff.teleportAsync(
                 Location(
@@ -173,7 +173,7 @@ private fun logWithResult(player: Player, usage: UnstuckUsage, result: UnstuckUs
                     usage.location.z
                 )
             )
-        })
+        }, ClickCallback.Options.builder().uses(ClickCallback.UNLIMITED_USES).build()))
     }, PermissionRegistry.ALERT)
 
     player.showDialog(createNotice(usage))
