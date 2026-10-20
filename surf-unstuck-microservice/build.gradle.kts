@@ -6,7 +6,7 @@ plugins {
 }
 
 surfStandaloneApi  {
-    withSurfDatabaseR2dbc("2.3.1", "dev.slne.surf.unstuck.libs")
+    withSurfDatabaseR2dbc("2.3.5", "dev.slne.surf.unstuck.libs")
 }
 
 dependencies {
